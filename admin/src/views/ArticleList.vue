@@ -29,6 +29,9 @@
           <Articles />
         </v-sheet>
       </v-col>
+      <div class="test">
+        test
+      </div>
     </v-row>
   </v-container>
 </template>
@@ -55,5 +58,6 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+
 </style>
