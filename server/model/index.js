@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 
 
+import { userSchema } from "./user.js"
 import config from "../config/config.default.js"
 
 
@@ -20,3 +21,6 @@ db.on("error", (err) => {
 db.once("open", function () {
   console.log("MongoDB 连接成功")
 })
+
+
+export const User = mongoose.model("User", userSchema)
