@@ -25,7 +25,7 @@ export const login = async(req, res, next) => {
     const token = await sign({
       userId: user._id
     }, config.jwtSecret, {
-      expiresIn: 60*60
+      expiresIn: 60*60*24
     })
     // 生成返回的用户信息
     const retUser = {

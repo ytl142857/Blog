@@ -2,6 +2,7 @@ import mongoose from "mongoose"
 
 
 import { userSchema } from "./user.js"
+import { articleSchema } from "./articles.js"
 import config from "../config/config.default.js"
 
 
@@ -24,3 +25,4 @@ db.once("open", function () {
 
 
 export const User = mongoose.model("User", userSchema)
+export const Article = mongoose.model("Article", articleSchema)
