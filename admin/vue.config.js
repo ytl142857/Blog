@@ -1,18 +1,14 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/public/' : '/',
+  transpileDependencies: [
+    'vuetify'
+  ],
+  lintOnSave: false,
   devServer: {
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:3001',
-        changeOrigin: true
+      proxy: {
+          'api': {
+              target: 'hhttp://localhost:3000',
+              // pathRewrite: { '^api': '' }
+          }
       }
-    }
-  },
-  css: {
-    loaderOptions: {
-      scss: {
-        additionalData: `@import '@/styles/variables.scss';`
-      }
-    }
   }
 }
