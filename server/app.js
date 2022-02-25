@@ -19,7 +19,7 @@ app.use(morgan("dev"))
 app.use(cors())
 
 
-app.use("/api", router)
+app.use("/api", router)             
 
 
 app.get("/", (req, res) => {

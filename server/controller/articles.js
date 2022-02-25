@@ -16,10 +16,10 @@ export const getArticleById = async(req, res, next) => {
 
 export const getArticleList = async(req, res, next) => {
   try {
-    const articleList = await Article.find()
+    const articleList = await Article.find().select("-content")
     const articleListCnt = await Article.count()
     res.status(200).json({
-      ...articleList,
+      articleList,
       articleListCnt
     })
   } catch (error) {
@@ -31,6 +31,7 @@ export const getArticleList = async(req, res, next) => {
 export const createCon = async (req, res, next) => {
   try {
     let article = new Article(req.body.article)
+    console.log(article)
     await article.save()
     article = article.toJSON()
     res.status(201).json({

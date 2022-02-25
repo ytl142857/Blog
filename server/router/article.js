@@ -4,12 +4,12 @@ import { auth } from "../middleware/auth.js"
 
 import { createCon, updateCon, deleteCon, getArticleById, getArticleList } from "../controller/articles.js"
 import { articleIdVal } from "../validator/article.js"
-// import { login as loginVal, register as registerVal } from "../validator/user.js"
 
 
 const router = express.Router()
 
-router.get("/id", articleIdVal, getArticleById)
+router.post("/id", getArticleById)
+// router.post("/id", articleIdVal, getArticleById)
 router.get("/list", getArticleList)
 
 
