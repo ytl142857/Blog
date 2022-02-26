@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from "@/store"
 
 import ArticleList from '@/views/Article/ArticleList'
 import ArticleDetail from '@/views/Article/ArticleDetail'
@@ -51,5 +52,16 @@ VueRouter.prototype.push = function(location, resolve, reject) {
 const router = new VueRouter({
   routes
 })
+
+
+router.beforeEach((to, from, next) => {
+  try {
+    if(to.name === "Login" && (store.state.user.token)) next({ name: "ArticleList"})
+    next()
+  } catch (error) {
+    next()
+  }
+})
+
 
 export default router

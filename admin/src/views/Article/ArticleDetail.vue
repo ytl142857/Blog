@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="8">
+      <v-col>
         <v-card class="article-card" outlined>
           <v-card-title>编辑文章</v-card-title>
           <v-divider></v-divider>
 
-          <v-form>
+          <v-form v-model="validRules.valid">
             <v-container class="pa-7">
               <v-row>
                 <v-col>
@@ -21,49 +21,71 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-text-field
-                  v-model="article.title"
-                  label="标题"
-                  outlined
-                  clearable
-                  :placeholder="article.title"
-                ></v-text-field>
+                <v-col cols="6">
+                  <v-text-field
+                    v-model="article.title"
+                    label="标题"
+                    outlined
+                    required
+                    :rules="validRules.title"
+                    clearable
+                    :placeholder="article.title"
+                  ></v-text-field>
+                </v-col>
               </v-row>
 
               <v-row>
-                <v-radio-group v-model="article.classfication" mandatory row>
-                  <v-radio label="技术" value="tech"></v-radio>
-                  <v-radio label="生活" value="life"></v-radio>
-                </v-radio-group>
+                <v-col>
+                  <v-radio-group
+                    v-model="article.classfication"
+                    class="ml-4"
+                    mandatory
+                  >
+                    <template v-slot:label>
+                      <div><strong>分类</strong></div>
+                    </template>
+                    <v-radio label="技术" value="tech"></v-radio>
+                    <v-radio label="生活" value="life"></v-radio>
+                  </v-radio-group>
+                </v-col>
               </v-row>
 
               <v-row>
-                <v-combobox
-                  v-model="article.tags"
-                  label="tags"
-                  outlined
-                  multiple
-                  small-chips
-                  hide-selected
-                >
-                </v-combobox>
+                <v-col cols="6">
+                  <v-combobox
+                    v-model="article.tags"
+                    label="tags"
+                    outlined
+                    multiple
+                    small-chips
+                    hide-selected
+                  >
+                  </v-combobox>
+                </v-col>
               </v-row>
 
               <v-row>
-                <v-textarea
-                  outlined
-                  label="文章内容"
-                  v-model="article.content"
-                ></v-textarea>
+                <v-col>
+                  <Editor
+                    :mdContent="article.content"
+                    @change="markdownChange"
+                  />
+                </v-col>
               </v-row>
 
               <v-row>
-                <v-btn @click="submitArticle" outlined class="mr-4"
-                  >修改文章</v-btn
-                >
-                <v-btn @click="deleteArticle" outlined color="error"
-                  >删除文章</v-btn
-                >
+                <v-col>
+                  <v-btn
+                    :disabled="!validRules.valid"
+                    @click="submitArticle"
+                    outlined
+                    class="mr-4"
+                    >修改文章</v-btn
+                  >
+                  <v-btn @click="deleteArticle" outlined color="error"
+                    >删除文章</v-btn
+                  >
+                </v-col>
               </v-row>
             </v-container>
           </v-form>
@@ -75,12 +97,20 @@
 
 <script>
 import { mapState } from "vuex";
+import Editor from "@/components/Editor";
 
 export default {
+  components: {
+    Editor,
+  },
   data() {
     return {
       detailErrorMessage: "",
       detailErrorAlert: false,
+      validRules: {
+        valid: false,
+        title: [(title) => !!title || "请输入标题"],
+      },
     };
   },
   methods: {
@@ -110,6 +140,9 @@ export default {
         this.detailErrorMessage = "删除文章失败";
         this.detailErrorAlert = true;
       }
+    },
+    markdownChange(newContent) {
+      this.article.content = newContent;
     },
   },
   mounted() {

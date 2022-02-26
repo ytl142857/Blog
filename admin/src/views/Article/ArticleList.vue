@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="2" class="mt-12">
-        <v-sheet light>
+        <v-card light outlined>
           <v-list nav>
             <v-list-item-group v-model="selectedClass">
               <v-list-item link>
@@ -16,6 +16,7 @@
               <v-divider class="primary"></v-divider>
 
               <v-subheader class="primary--text">按分类查看</v-subheader>
+              
               <v-list-item link>
                 <v-list-item-content>
                   <v-list-item-title class="primary--text font-weight-bold"
@@ -32,18 +33,20 @@
               </v-list-item>
             </v-list-item-group>
           </v-list>
-        </v-sheet>
+        </v-card>
       </v-col>
 
       <v-col>
-        <v-sheet min-height="70vh" rounded="lg">
-          <v-list-item-title class="text-h6 pl-10 my-4">
+        <v-card min-height="70vh" rounded="lg" class="py-4" outlined>
+          <v-list-item-title class="text-h6 ml-10 my-4">
             共{{ articleListCnt }}篇文章
             <v-btn
               depressed
               class="ml-4 red white--text font-weight-bold rounded-0"
               @click="toArticleCreate"
-              >添加新文章</v-btn
+              >
+              <v-icon>mdi-plus</v-icon>
+              添加新文章</v-btn
             >
           </v-list-item-title>
 
@@ -63,12 +66,11 @@
                   <v-list-item-subtitle class="primary--text">
                     Tags:
                     <v-chip
-                      small
-                      disabled
+                      x-small
                       label
                       text-color="white"
                       color="red"
-                      class="mr-3"
+                      class="ml-2 font-weight-bold"
                       v-for="(tag, index) in article.tags"
                       :key="index"
                     >
@@ -87,15 +89,13 @@
               <v-divider class="primary"></v-divider>
             </div>
           </v-list>
-        </v-sheet>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
   data() {
     return {
@@ -122,9 +122,6 @@ export default {
     this.$store.dispatch("getArticleList");
   },
   computed: {
-    // ...mapState({
-    //   articleListCnt: (state) => state.article.articleListCnt,
-    // }),
     articleListCnt() {
       return this.showArticleList.length;
     },
