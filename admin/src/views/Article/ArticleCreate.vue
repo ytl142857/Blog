@@ -32,6 +32,13 @@
               </v-row>
 
               <v-row>
+                <v-radio-group v-model="article.classfication" mandatory row>
+                  <v-radio label="技术" value="tech"></v-radio>
+                  <v-radio label="生活" value="life"></v-radio>
+                </v-radio-group>
+              </v-row>
+
+              <v-row>
                 <v-combobox
                   v-model="article.tags"
                   label="tags"
@@ -72,8 +79,9 @@ export default {
         title: "",
         tags: [],
         content: "",
+        classfication: ""
       },
-      createErrorAlert: false
+      createErrorAlert: false,
     };
   },
   methods: {
@@ -81,13 +89,12 @@ export default {
       try {
         await this.$store.dispatch("createArticle", {
           article: {
-            ...this.article,
-            classfication: "123",
+            ...this.article
           },
         });
-        this.$router.push({ name: "ArticleList" })
+        this.$router.push({ name: "ArticleList" });
       } catch (error) {
-        this.createErrorAlert = true
+        this.createErrorAlert = true;
       }
     },
   },

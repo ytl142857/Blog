@@ -1,4 +1,5 @@
 import { reqArticleList, reqArticle, reqCreateArticle, reqPutArticle, reqDeleteArticle } from "@/api"
+import moment from "moment"
 
 
 const state = {
@@ -59,7 +60,14 @@ const actions = {
 }
 
 const getters = {
-
+  formatArticleList: (state) => {
+    return state.articleList.map((article) => {
+      article.classfication = (article.classfication === "life") ? "生活" : "技术"
+      article.createTime = moment(article.createTime).format("YYYY-MM-DD HH:mm:ss")
+      
+      return article
+    })
+  }
 }
 
 export default {

@@ -22,7 +22,7 @@
       >
 
       <v-btn v-else @click="logOut" outlined class="rounded-0"
-        >{{ userInfo.userName }}已登录，注销</v-btn
+        >已登录，注销</v-btn
       >
     </v-container>
   </v-app-bar>

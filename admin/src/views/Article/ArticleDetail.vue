@@ -31,6 +31,13 @@
               </v-row>
 
               <v-row>
+                <v-radio-group v-model="article.classfication" mandatory row>
+                  <v-radio label="技术" value="tech"></v-radio>
+                  <v-radio label="生活" value="life"></v-radio>
+                </v-radio-group>
+              </v-row>
+
+              <v-row>
                 <v-combobox
                   v-model="article.tags"
                   label="tags"
@@ -95,7 +102,9 @@ export default {
     },
     async deleteArticle() {
       try {
-        await this.$store.dispatch("deleteArticle", {articleId: this.article._id});
+        await this.$store.dispatch("deleteArticle", {
+          articleId: this.article._id,
+        });
         this.$router.push({ name: "ArticleList" });
       } catch (error) {
         this.detailErrorMessage = "删除文章失败";

@@ -18,7 +18,7 @@ config file: server/config/config.default.js
 
 ```
 export default {
-    // dbUrl: "${MONGODB LINK}",
+    dbUrl: "${MONGODB LINK}",
     jwtSecret: "${YOUR JWT SECRET}"
 }
 ```

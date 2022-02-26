@@ -31,7 +31,6 @@ export const getArticleList = async(req, res, next) => {
 export const createCon = async (req, res, next) => {
   try {
     let article = new Article(req.body.article)
-    console.log(article)
     await article.save()
     article = article.toJSON()
     res.status(201).json({
