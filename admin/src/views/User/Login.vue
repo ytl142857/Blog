@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import { sha256 } from "js-sha256";
+
 export default {
   data() {
     return {
@@ -67,8 +69,8 @@ export default {
   methods: {
     async userLogin() {
       try {
-        await this.$store.dispatch("userLogin", { user: this.user });
-        this.$router.push({name: "ArticleList"})
+        await this.$store.dispatch("userLogin", { user: { username: this.user.username, password: sha256(this.user.password) } });
+        this.$router.push({ name: "ArticleList" });
       } catch (error) {
         this.loginErrorAlert = true;
       }
