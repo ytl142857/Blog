@@ -3,7 +3,7 @@ import store from "@/store"
 
 
 const request = axios.create({
-  baseURL: "/api",
+  baseURL: process.env.VUE_APP_APIURL,
   timeout: 5000 // ms
 })
 
