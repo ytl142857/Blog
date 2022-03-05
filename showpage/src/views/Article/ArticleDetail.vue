@@ -6,16 +6,16 @@
           <v-container>
             <v-row>
               <v-card-title
-                class="font-weight-bold text-h3 brown--text text--darken-3 my-4"
+                class="font-weight-bold myPrimary--text my-4 decoration"
                 >{{ article.title }}</v-card-title
               ></v-row
             >
-            <v-row class="ml-2 mb-4">
-              <v-chip color="brown" class="mr-2 font-weight-bold" text-color="white"
+            <v-row class="mb-4 ml-2">
+              <v-chip color="myPrimary" class="mr-2" text-color="mySecond"
                 >分类:
                 {{ article.classfication === "life" ? "生活" : "技术" }}</v-chip
               >
-              <v-chip color="brown" text-color="white" class="font-weight-bold"
+              <v-chip color="myPrimary" text-color="mySecond"
                 >创建时间：{{ article.createTime }}</v-chip
               >
             </v-row>
@@ -32,7 +32,6 @@
                 :subfield="editorConfig.subfield"
                 :defaultOpen="editorConfig.defaultOpen"
                 :previewBackground="editorConfig.previewBackground"
-                :codeStyle="editorConfig.codeStyle"
               ></mavon-editor
             ></v-row>
           </v-container>
@@ -55,7 +54,6 @@ export default {
         subfield: false,
         defaultOpen: "preview",
         previewBackground: "#ffffff",
-        codeStyle: "'atom-one-dark'",
       },
     };
   },
@@ -76,5 +74,13 @@ export default {
 <style lang="scss" scoped>
 .editor {
   border: 1px solid #ffffff;
+}
+
+.decoration::before {
+  content: "";
+  height: 100%;
+  width: 5px;
+  background-color: #54503C;
+  margin-right: 10px;
 }
 </style>

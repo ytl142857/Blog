@@ -3,11 +3,7 @@
     <v-row justify="center">
       <v-col cols="12" sm="6">
         <v-sheet flat class="mt-4">
-          <v-btn-toggle
-            v-model="classficationChoose"
-            color="brown darken-4"
-            group
-          >
+          <v-btn-toggle v-model="classficationChoose" color="myPrimary" group>
             <v-btn value="all">所有文章</v-btn>
             <v-btn value="tech">技术</v-btn>
             <v-btn value="life">生活</v-btn>
@@ -19,7 +15,7 @@
             v-for="article in showArticleList"
             :key="article._id"
           >
-            <v-card-title class="primary--text font-weight-bold">{{
+            <v-card-title class="myPrimary--text font-weight-bold">{{
               article.title
             }}</v-card-title>
             <v-divider></v-divider>
@@ -29,15 +25,20 @@
                 <v-chip
                   x-small
                   label
-                  text-color="white"
-                  color="brown"
+                  text-color="mySecond"
+                  color="myPrimary"
                   class="mx-2 font-weight-bold"
                   v-for="(tag, index) in article.tags"
                   :key="index"
                 >
                   {{ tag }}</v-chip
                 >
-                <div class="mt-2">分类：{{ article.classfication === "life" ? "生活" : "技术" }} | 创建时间：{{ article.createTime }}</div> 
+                <div class="mt-2">
+                  分类：{{
+                    article.classfication === "life" ? "生活" : "技术"
+                  }}
+                  | 创建时间：{{ article.createTime }}
+                </div>
               </div>
             </v-card-text>
           </v-card>
@@ -52,6 +53,7 @@ import { reqArticleList } from "@/api";
 import moment from "moment";
 
 export default {
+  components: {},
   data() {
     return {
       classficationChoose: "all",

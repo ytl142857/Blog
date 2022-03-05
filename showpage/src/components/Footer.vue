@@ -1,10 +1,15 @@
 <template>
-  <v-footer app color="brown darken-3">
-    <v-row justify="center">
-      <v-col class="white--text text-center font-weight-light">
+  <v-footer absolute padless>
+    <v-card class="text-center" width="100%" flat tile color="white">
+      <v-divider></v-divider>
+      <!-- <v-card-text>
+        icon here
+      </v-card-text> -->
+      
+      <v-card-text class="myPrimary--text font-weight-light">
         {{ new Date().getFullYear() }} Chestnutttt
-      </v-col>
-    </v-row>
+      </v-card-text>
+    </v-card>
   </v-footer>
 </template>
 
