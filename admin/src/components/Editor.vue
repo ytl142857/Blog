@@ -4,7 +4,7 @@
     v-model="articleContent"
     :toolbars="toolbar"
     :boxShadow="false"
-    @change="markdownChange()"
+    
   ></mavon-editor>
 </template>
 
@@ -12,7 +12,6 @@
 export default {
   data() {
     return {
-      value: this.mdContent,
       toolbar: {
         bold: true, // 粗体
         italic: true, // 斜体
@@ -36,16 +35,18 @@ export default {
     mdContent: String,
   },
   methods: {
-    markdownChange() {
-      this.$emit("change", this.value);
-    },
+    // markdownChange() {
+    //   this.$emit("change", this.articleContent);
+    // },
   },
   computed: {
     articleContent: {
       get() {
         return this.mdContent;
       },
-      set(val) {},
+      set(val) {
+        this.$emit("change", val);
+      },
     },
   },
 };
