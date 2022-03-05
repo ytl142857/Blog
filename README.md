@@ -47,7 +47,7 @@ config file:
 
 `npm run serve`
 
-# Front-end (Show Page)
+## Front-end (Show Page)
 
 1. Install npm packges
 
