@@ -4,6 +4,8 @@
 - Front-end (Blog Admin): Vue2 with Vuetify
 - Database: MongoDB
 
+My Blog Link: http://139.155.236.54/#/
+
 # Usage
 
 ## Backend
@@ -38,7 +40,30 @@ export default {
 config file: 
 - admin/vue.config.js
 - admin/jsconfig.json
+- admin/.env.development (for development enviroment)
+- admin/.env.production (for production enviroment)
 
 3. Run project
 
 `npm run serve`
+
+# Front-end (Show Page)
+
+1. Install npm packges
+
+1. Install npm packges
+
+`npm install`
+
+2. Modify config file
+
+config file: 
+- showPage/vue.config.js
+- showPage/jsconfig.json
+- showPage/.env.development (for development enviroment)
+- showPage/.env.production (for production enviroment)
+
+3. Run project
+
+`npm run serve`
+
