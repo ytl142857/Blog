@@ -74,6 +74,7 @@ export default {
 <style lang="scss" scoped>
 .editor {
   border: 1px solid #ffffff;
+  z-index: inherit;
 }
 
 .decoration::before {

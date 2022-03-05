@@ -96,7 +96,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import Editor from "@/components/Editor";
 
 export default {
@@ -111,11 +110,13 @@ export default {
         valid: false,
         title: [(title) => !!title || "请输入标题"],
       },
+      changedContent: ""
     };
   },
   methods: {
     async submitArticle() {
       try {
+        this.article.content = this.changedContent
         const postArticle = { ...this.article };
         delete postArticle._id;
         await this.$store.dispatch("putArticle", {
@@ -142,7 +143,7 @@ export default {
       }
     },
     markdownChange(newContent) {
-      this.article.content = newContent;
+      this.changedContent = newContent;
     },
   },
   mounted() {
@@ -151,9 +152,9 @@ export default {
     });
   },
   computed: {
-    ...mapState({
-      article: (state) => state.article.article,
-    }),
+    article() {
+      return this.$store.state.article.article;
+    },
   },
 };
 </script>

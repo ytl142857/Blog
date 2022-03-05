@@ -1,5 +1,11 @@
 <template>
-  <mavon-editor class="editor" v-model="value" :toolbars="toolbar" :boxShadow="false" @change="markdownChange()"></mavon-editor>
+  <mavon-editor
+    class="editor"
+    v-model="articleContent"
+    :toolbars="toolbar"
+    :boxShadow="false"
+    @change="markdownChange()"
+  ></mavon-editor>
 </template>
 
 <script>
@@ -31,14 +37,23 @@ export default {
   },
   methods: {
     markdownChange() {
-      this.$emit("change", this.value)
-    }
-  }
+      this.$emit("change", this.value);
+    },
+  },
+  computed: {
+    articleContent: {
+      get() {
+        return this.mdContent;
+      },
+      set(val) {},
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .editor {
   border: 1px solid #000000;
+  z-index: inherit;
 }
 </style>
