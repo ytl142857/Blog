@@ -6,6 +6,8 @@
 
 My Blog Link: http://139.155.236.54/#/
 
+Admin Page: http://139.155.236.54/admin/#/
+
 # Usage
 
 ## Backend

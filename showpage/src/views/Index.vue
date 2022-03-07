@@ -17,6 +17,7 @@
                   <p v-for="(intro, index) in introduction" :key="index">
                     {{ intro }}
                   </p>
+                  <p>本网站管理页面：<a target="_blank" href="http://139.155.236.54/admin/#/">http://139.155.236.54/admin/#/</a></p>
                   <a
                     href="https://github.com/ytl142857"
                     class="text-decoration-none"
