@@ -7,7 +7,8 @@
       </v-card-text> -->
       
       <v-card-text class="myPrimary--text font-weight-light">
-        {{ new Date().getFullYear() }} Chestnutttt
+        {{ new Date().getFullYear() }} Chestnutttt | 
+        <a target="_blank" href="https://beian.miit.gov.cn/">渝ICP备2022002492号-1</a>
       </v-card-text>
     </v-card>
   </v-footer>
