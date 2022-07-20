@@ -1,21 +1,13 @@
 import React from "react";
-import { Button, Layout, Menu } from "antd";
+import { Layout, Menu } from "antd";
 import { $storage } from "@utils/storage";
 import { MenuItems } from "@constants";
-import {
-  Link,
-  Outlet,
-  Route,
-  Routes,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
+import { Outlet, Navigate, useNavigate } from "react-router-dom";
+import styles from "./index.module.less";
 
 export const DefaultLayout = () => {
   const navigate = useNavigate();
-
   const authenticated = $storage.token;
-  console.log(authenticated);
 
   if (!authenticated) return <Navigate to="/login" replace />;
 
@@ -26,9 +18,11 @@ export const DefaultLayout = () => {
   return (
     <Layout className="w-screen h-screen">
       <Layout.Sider>
+        <div className="bg-white text-lg font-semibold text-center p-4">
+          <div className={styles["layout-title"]}>后台管理系统</div>
+        </div>
         <Menu
           items={MenuItems}
-          style={{ height: "100%" }}
           onSelect={onSelect}
           defaultSelectedKeys={["home"]}
         />

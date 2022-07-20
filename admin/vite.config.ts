@@ -5,6 +5,14 @@ import { resolve } from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3008",
+        changeOrigin: true,
+      },
+    },
+  },
   css: {
     preprocessorOptions: {
       less: {
