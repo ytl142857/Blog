@@ -1,14 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export const HomePage = () => {
   return (
     <>
-      <div
-        className="w-full rounded text-xl font-bold p-4 hover:ring-4 ring-red-200"
-        style={{ color: "#fff", background: "#9f353a" }}
-      >
-        后台管理系统主页
+      <div className="w-full rounded text-xl font-bold p-4 ring-primary text-white bg-primary hover:ring-4 hover:text-primary hover:bg-white">
+        <span>后台管理系统主页</span>
       </div>
     </>
   );
