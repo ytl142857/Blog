@@ -1,6 +1,6 @@
 import axios from "axios";
 import { $storage } from "./storage";
-import { message as antdMessage, message } from "antd";
+import { message as antdMessage } from "antd";
 
 const createHttp = () => {
   const client = axios.create();
@@ -25,13 +25,18 @@ const createHttp = () => {
       const { code, message } = data;
 
       if (code && code !== 200) {
+        if (code === 401) {
+          antdMessage.error("用户权限验证错误");
+          $storage.clear();
+          return Promise.reject(res);
+        }
         antdMessage.error(message);
         return Promise.reject(res);
       }
       return res;
     },
     (err) => {
-      if (err.code === 400) {
+      if (err.code === 400 || err.code === 401) {
         $storage.clear();
       }
       antdMessage.error(err?.data.message || "数据获取错误");

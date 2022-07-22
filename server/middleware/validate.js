@@ -8,8 +8,8 @@ export const validate = (validations) => {
     if (errors.isEmpty()) {
       return next();
     }
-    res.status(200).json({
-      code: 400,
+    res.status(502).json({
+      code: 502,
       message: errors
         .array()
         .map((error) => error.msg)

@@ -4,20 +4,6 @@ import type { ColumnsType } from "antd/es/table";
 import { registerUser, getUserList } from "./services";
 import { sha256 } from "@utils/crypto";
 
-const columns: ColumnsType<{ username: string }> = [
-  { title: "用户名", dataIndex: "username", key: "username" },
-  {
-    title: "操作",
-    key: "operation",
-    render: () => (
-      <Space>
-        <Button type="primary">删除</Button>
-        <Button>编辑</Button>
-      </Space>
-    ),
-  },
-];
-
 export const UserPage = () => {
   const [form] = Form.useForm();
   const [userList, setUserList] = useState<{ username: string }[]>([]);
@@ -43,21 +29,45 @@ export const UserPage = () => {
       password: sha256(info.password),
     };
     registerUser(loginInfo).then(
-      (res) => {
+      () => {
         message.success("新建用户成功！");
         form.resetFields();
       },
-      (err) => {}
+      () => {}
     );
   };
+
+  const onOperation = () => {
+    message.error("不允许操作用户");
+  };
+
+  const columns: ColumnsType<{ username: string }> = [
+    { title: "用户名", dataIndex: "username", key: "username" },
+    {
+      title: "操作",
+      key: "operation",
+      render: () => (
+        <Space>
+          <Button size="small" type="primary" onClick={onOperation}>
+            删除
+          </Button>
+          <Button size="small" onClick={onOperation}>
+            编辑
+          </Button>
+        </Space>
+      ),
+    },
+  ];
 
   return (
     <>
       <Card title="用户列表" style={{ marginBottom: "16px" }}>
         <Table
+          size="small"
           rowKey={"username"}
           columns={columns}
           dataSource={userList}
+          pagination={false}
         ></Table>
       </Card>
       <Card title="添加用户" style={{ width: 400 }}>
