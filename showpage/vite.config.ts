@@ -4,7 +4,6 @@ import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/admin/",
   plugins: [react()],
   server: {
     proxy: {
@@ -24,6 +23,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src/"),
+      "@components": resolve(__dirname, "./src/components"),
       "@constants": resolve(__dirname, "./src/constants"),
       "@layouts": resolve(__dirname, "./src/layouts"),
       "@pages": resolve(__dirname, "./src/pages"),
