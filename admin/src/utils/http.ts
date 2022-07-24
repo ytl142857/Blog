@@ -3,7 +3,9 @@ import { $storage } from "./storage";
 import { message as antdMessage } from "antd";
 
 const createHttp = () => {
-  const client = axios.create();
+  const client = axios.create({
+    baseURL: import.meta.env.VITE_APP_API,
+  });
 
   client.interceptors.request.use((config) => {
     const token = $storage.token;

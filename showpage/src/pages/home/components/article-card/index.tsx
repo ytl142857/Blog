@@ -1,6 +1,6 @@
 import React from "react";
 import { IArticle } from "@pages/home/models";
-import dayjs from "@utils/dayjs";
+import { dayjs } from "@utils/dayjs";
 
 export const ArticleCard = ({ article }: { article: IArticle }) => {
   const onOpenArticle = () => {
@@ -37,6 +37,7 @@ export const ArticleCard = ({ article }: { article: IArticle }) => {
         </div>
         <div className="text-xs text-primary font-semibold">
           {dayjs(article.createTime).format("YYYY-MM-DD HH:mm:ss")}
+          {/* {article.createTime} */}
         </div>
       </div>
     </div>
